@@ -107,6 +107,7 @@ class ClassBrowser( gtk.VBox ):
             self.column.set_cell_data_func(self.crt, parser.cellrenderer)
             self.column.set_cell_data_func(self.cellrendererpixbuf, parser.pixbufrenderer)
         self.parser = parser
+        self.browser.expand_all()
         self.browser.queue_draw()
               
               
@@ -312,8 +313,9 @@ class ClassBrowser( gtk.VBox ):
                     path = self.parser.get_tag_at_line(self.browser.get_model(),doc,line)
                     if path:
                         self.browser.realize()
-                        if options.singleton().autocollapse: self.browser.collapse_all()
-                        self.browser.expand_to_path(path)
+                        #if options.singleton().autocollapse: self.browser.collapse_all()
+                        self.browser.expand_all()
+                        #self.browser.expand_to_path(path)
                         self.browser.set_cursor(path)
                         if options.singleton().verbose: print "jump to", path
 
